@@ -22,4 +22,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CategoryStyle">
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">#546e7a </item>
+    </style>
+
 </resources>
