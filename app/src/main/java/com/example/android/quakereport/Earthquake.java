@@ -9,33 +9,33 @@ public class Earthquake  {
     /**
      * Magnitude of the earthquake
      */
-    private float magnitude;
+    private float mMagnitude;
 
     /**
      * Place where earthquake occured
      */
-    private String place;
+    private String mLocation;
 
     /**
      * Date of earthquake
      */
-    private String date;
+    private String mDate;
 
-    public Earthquake(float _magnitude, String _place, String _date){
-        magnitude = _magnitude;
-        place = _place;
-        date = _date;
+    public Earthquake(float magnitude, String place, String date){
+        mMagnitude = magnitude;
+        mLocation= place;
+        mDate = date;
     }
 
     public float getMagnitude(){
-        return magnitude;
+        return mMagnitude;
     }
 
     public String getPlace(){
-        return place;
+        return mLocation;
     }
 
     public String getDate(){
-        return date;
+        return mDate;
     }
 }
