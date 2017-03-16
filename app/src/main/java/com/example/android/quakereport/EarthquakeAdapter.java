@@ -27,18 +27,28 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         View listItemView = convertView;
 
+        // Check if there is an existing list item view (called converview) then we can use it,
+        // otherwise inflate a new list item layout
         if(listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_list_item,parent,false);
         }
+
+        // Find the earthquake at the given location in the list of earthquakes
         Earthquake localEarthquake = getItem(position);
 
+        // Find the textview with View ID Magnitude
         TextView magnitudeTextView = (TextView)listItemView.findViewById(R.id.mag_text_view);
-        magnitudeTextView.setText(Float.toString(localEarthquake.getMagnitude()));
+        //Display the magnitude of current earthquake
+        magnitudeTextView.setText(localEarthquake.getMagnitude());
 
-        TextView placeTextView = (TextView)listItemView.findViewById(R.id.place_text_view);
-        placeTextView.setText(localEarthquake.getPlace());
+        // Find the textview with View ID location
+        TextView placeTextView = (TextView)listItemView.findViewById(R.id.location_text_view);
+        //Display the location of current earthquake
+        placeTextView.setText(localEarthquake.getLocation());
 
+        // Find the textview with View ID date
         TextView dateTextView = (TextView)listItemView.findViewById(R.id.date_text_view);
+        //Display the date of current earthquake
         dateTextView.setText(localEarthquake.getDate());
 
         return listItemView;
