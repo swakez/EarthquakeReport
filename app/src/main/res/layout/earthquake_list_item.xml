@@ -2,28 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:minHeight="44dp">
+    android:padding="16dp"
+    >
 
     <TextView
         android:id="@+id/mag_text_view"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_marginLeft="12dp"
-        style="@style/CategoryStyle"/>
+
+        android:text="7.2"
+        />
     <TextView
         android:id="@+id/location_text_view"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        style="@style/CategoryStyle"/>
+        android:text="russia"
+        />
     <TextView
         android:id="@+id/date_text_view"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        style="@style/CategoryStyle"/>
+        android:text="12 feb 2016"
+        />
+    <TextView
+        android:id="@+id/time_text_view"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="12:00"
+        />
 
 </LinearLayout>
