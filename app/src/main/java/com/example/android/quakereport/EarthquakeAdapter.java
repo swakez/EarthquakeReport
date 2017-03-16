@@ -18,6 +18,10 @@ import java.util.List;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
+    String locationOffset;
+    String primaryLocation;
+
+    private final String LOCATION_SEPARATOR = " of ";
 
     public EarthquakeAdapter(Context context, int resource, List<Earthquake> objects) {
         super(context, resource, objects);
@@ -43,10 +47,27 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         //Display the magnitude of current earthquake
         magnitudeTextView.setText(localEarthquake.getMagnitude());
 
+        String originalLocation = localEarthquake.getLocation();
+
+        if (originalLocation.contains(LOCATION_SEPARATOR)) {
+            String[] parts = originalLocation.split(LOCATION_SEPARATOR);
+            locationOffset = parts[0] + LOCATION_SEPARATOR;
+            primaryLocation = parts[1];
+        } else {
+            locationOffset = getContext().getString(R.string.near_the);
+            primaryLocation = originalLocation;
+        }
+        
         // Find the textview with View ID location
-        TextView placeTextView = (TextView)listItemView.findViewById(R.id.location_text_view);
+        TextView offsetTextView = (TextView)listItemView.findViewById(R.id.offset_text_view);
         //Display the location of current earthquake
-        placeTextView.setText(localEarthquake.getLocation());
+        offsetTextView.setText(locationOffset);
+
+
+        // Find the textview with View ID location
+        TextView primaryLocationTextView = (TextView)listItemView.findViewById(R.id.primary_location_text_view);
+        //Display the location of current earthquake
+        primaryLocationTextView.setText(primaryLocation);
 
         // Create a new date object from the time in milliseconds of the current earthquake
         Date dateObject = new Date(localEarthquake.getTimeInMilliSeconds());
@@ -79,7 +100,4 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a");
         return dateFormat.format(dateObject);
     }
-
-    String pr
-
 }
