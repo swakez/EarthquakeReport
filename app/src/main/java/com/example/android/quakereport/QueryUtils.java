@@ -37,6 +37,7 @@ public final class QueryUtils {
      *
      */
     public static List<Earthquake> fetchEarthquakeData(String stringUrl){
+        Log.e(LOG_TAG," fetchEarthquakeData");
         // Create URL object
         URL url = QueryUtils.createUrl(stringUrl);
         // Perform HTTP request to the URL and receive a JSON response back
@@ -53,6 +54,7 @@ public final class QueryUtils {
      * Make an HTTP request to the given URL and return a String as the response.
      */
     private static String makeHttpRequest(URL url) throws IOException {
+        Log.e(LOG_TAG," mkeHttpReq");
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
@@ -90,6 +92,7 @@ public final class QueryUtils {
      * whole JSON response from the server.
      */
     private static String readFromStream(InputStream inputStream) throws IOException {
+        Log.e(LOG_TAG," readFromStream");
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
@@ -108,7 +111,7 @@ public final class QueryUtils {
      * parsing a JSON response.
      */
     public static List<Earthquake> extractFeatureFromJson(String earthquakeJSON) {
-
+        Log.e(LOG_TAG," extract FeaturefromJSON");
         // Create an empty ArrayList that we can start adding earthquakes to
         List<Earthquake> earthquakes = new ArrayList<>();
 
@@ -147,6 +150,7 @@ public final class QueryUtils {
     }
 
     public static URL createUrl(String StringUrl) {
+        Log.e(LOG_TAG," createURL");
         URL url = null;
         try {
             url = new URL(StringUrl);
