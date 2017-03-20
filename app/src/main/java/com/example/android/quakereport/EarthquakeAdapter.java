@@ -45,6 +45,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Find the earthquake at the given location in the list of earthquakes
         Earthquake localEarthquake = getItem(position);
 
+        updateUI(listItemView,localEarthquake);
+
+        return listItemView;
+    }
+
+    private void updateUI(View listItemView,Earthquake localEarthquake){
         String formattedMagnitude = formatMagnitude(localEarthquake.getMagnitude());
 
         // Find the textview with View ID Magnitude
@@ -53,13 +59,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         magnitudeTextView.setText(formattedMagnitude);
 
         GradientDrawable magnitudeCircle = (GradientDrawable)magnitudeTextView.getBackground();
-
         int magnitudeColor = getMagnitudeColor(localEarthquake.getMagnitude());
-
         magnitudeCircle.setColor(magnitudeColor);
-
-
-
 
         String originalLocation = localEarthquake.getLocation();
 
@@ -99,10 +100,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         //Format the time String
         String formattedTime = formatTime(dateObject);
-
         timeTextView.setText(formattedTime);
 
-        return listItemView;
     }
 
     private String formatDate(Date dateObject){

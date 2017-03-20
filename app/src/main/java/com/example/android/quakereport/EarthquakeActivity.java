@@ -34,6 +34,10 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
+
+        ////here we need to execute our background tast
+
+
         // Create a fake list of earthquake locations.
         ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
@@ -63,4 +67,8 @@ public class EarthquakeActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 }
