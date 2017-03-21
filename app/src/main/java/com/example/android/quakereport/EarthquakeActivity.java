@@ -21,10 +21,13 @@ import android.content.Loader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +45,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
      * Adapter for the list of earthquakes
      */
     private EarthquakeAdapter mAdapter;
-
+    /**
+     * TextView to be set in case of empty screen
+     */
+    private TextView mEmptyStateTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +56,8 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
-
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_state_text_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
         // Set onclick item listener to create intent for details of earthquake
         mAdapter = new EarthquakeAdapter(this, 0, new ArrayList<Earthquake>());
         earthquakeListView.setAdapter(mAdapter);
@@ -73,21 +80,26 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int id, Bundle args) {
+        Log.e(LOG_TAG," onCreateLoader");
         return new EarthquakeLoader(this,USGS_REQUEST_URL);
+
     }
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> data) {
+        Log.e(LOG_TAG," onLoadFinished");
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
         //
         if (data != null && !data.isEmpty()){
             mAdapter.addAll(data);
         }
+        mEmptyStateTextView.setText(R.string.no_earthquake);
     }
 
     @Override
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
+        Log.e(LOG_TAG," onLoaderReset");
         mAdapter.clear();
     }
 }

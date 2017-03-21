@@ -22,6 +22,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
     @Override
     protected void onStartLoading() {
+        Log.e(LOG_TAG," onStartLoading");
         forceLoad();
     }
 
@@ -33,7 +34,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
             return null;
         }
         List<Earthquake> earthquakes = QueryUtils.fetchEarthquakeData(mUrl);
-        Log.e("Earthquakeloader"," in loadbackgrd");
+        Log.e(LOG_TAG," in loadbackgrd");
         return earthquakes;
     }
 
