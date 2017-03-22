@@ -34,21 +34,27 @@ public final class QueryUtils {
     }
 
     /**
-     *
+     * Fetch the earthquake data from the url provided
+     * @param stringUrl contains the url from where to fetch the data
+     * @return list of earthquake to be displayed
      */
     public static List<Earthquake> fetchEarthquakeData(String stringUrl){
-        Log.e(LOG_TAG," fetchEarthquakeData");
         // Create URL object
         URL url = QueryUtils.createUrl(stringUrl);
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = "";
         try {
+            // Receiving response in String format
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
             Log.e("Earthquake Activity", "IOExcepton", e);
         }
-        List<Earthquake> earthquakes = extractFeatureFromJson(jsonResponse);
-        return earthquakes;
+        if(jsonResponse!=null) {
+            // Converting String JSON response to List of earthquakes
+            List<Earthquake> earthquakes = extractFeatureFromJson(jsonResponse);
+            return earthquakes;
+        }
+        else return null;
     }
     /**
      * Make an HTTP request to the given URL and return a String as the response.
